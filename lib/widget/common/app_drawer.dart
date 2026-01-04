@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-
-import '../../utils/color.dart';
-import '../../utils/text_style.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

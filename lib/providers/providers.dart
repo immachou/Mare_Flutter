@@ -8,6 +8,7 @@ class DashboardProvider extends ChangeNotifier {
 
   int _currentFunnelTabIndex = 0;
   int get currentFunnelTabIndex => _currentFunnelTabIndex;
+
   //on utilise une Map pour faire correspondre l'index(0,1,2)aux données
   final Map<int, ConversionMetrics> _funnelData = {
     0:ConversionMetrics(
@@ -70,18 +71,18 @@ class DashboardProvider extends ChangeNotifier {
   // Données slide EFFICIENCY
   final List<Map<String, dynamic>> _efficiencySlides = [
     {
-      'title': 'Active Users',
-      'value': 320,
-      'label': 'Users',
-      'growth': 18.6,
-      'period': 'vs last month',
-    },
-    {
       'title': 'Business Autonomous Reports',
       'value': 92,
       'label': 'Efficiency',
       'growth': 24.2,
       'period': 'vs last week',
+    },
+    {
+      'title': 'Active Users',
+      'value': 320,
+      'label': 'Users',
+      'growth': 18.6,
+      'period': 'vs last month',
     },
     {
       'title': 'Revenue Growth',

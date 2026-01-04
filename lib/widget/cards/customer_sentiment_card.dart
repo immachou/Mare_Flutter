@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/providers.dart';
 import '../../utils/color.dart';
+import '../../utils/text_style.dart';
 import 'customer_sentiment_gauge.dart';
 
 class CustomerSentimentCard extends StatelessWidget {
@@ -27,7 +28,7 @@ class CustomerSentimentCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildHeader(colorPos),
+          _buildHeader(context),
           const SizedBox(height: 30),
 
           // ANIMATION AUTOMATIQUE VERS LE NOUVEAU SCORE
@@ -141,19 +142,25 @@ class CustomerSentimentCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              label,
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            Flexible(
+              child: Text(
+                label,
+                style: const TextStyle(fontSize: 11, color: Colors.grey),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 18, 
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+        Expanded(
+          child: Text(
+            value,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
         ),
       ],
@@ -161,25 +168,43 @@ class CustomerSentimentCard extends StatelessWidget {
   );
 }
 
-  Widget _buildHeader(Color color) {
+  Widget _buildHeader(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(Icons.sentiment_satisfied_alt, color: color),
-        const SizedBox(width: 8),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Customer Sentiment",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Aggregated from reviews",
-              style: TextStyle(fontSize: 10, color: Colors.grey),
-            ),
-          ],
+        Container(
+          padding: EdgeInsets.all(w * 0.015),
+          decoration: BoxDecoration(
+            color: AppColors.chartBackground,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(
+            Icons.emoji_emotions,
+            color: AppColors.chartOrange,
+            size: w * 0.07,
+          ),
+        ),
+        SizedBox(width: w * 0.03),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Customer Sentiment',
+                style: AppTextStyles.cardTitle,
+              ),
+              SizedBox(height: w * 0.006),
+              Text(
+                'Aggregated from emails + reviews + chats',
+                style: AppTextStyles.cardSubtitle,
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
+
 }

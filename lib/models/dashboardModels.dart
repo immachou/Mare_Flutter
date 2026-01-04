@@ -1,16 +1,18 @@
+import 'package:flutter/cupertino.dart';
+
 class ActivityItem {
   final ActivityType type;
   final String title;
   final String? highlight;
-  final String? avatarUrl;
+  final String? imagePath;
   final String timeAgo;
-  final String? icon;
+  final IconData? icon;
 
   const ActivityItem({
     required this.type,
     required this.title,
     this.highlight,
-    this.avatarUrl,
+    this.imagePath,
     required this.timeAgo,
     this.icon,
   });
@@ -20,8 +22,9 @@ enum ActivityType {
   aiGenerated,
   userAction,
   workflow,
-  alert,
+  alert, update,
 }
+
 class ConversionMetrics {
   final int visitors;
   final int addedToCart;
@@ -35,12 +38,13 @@ class ConversionMetrics {
     required this.completedOrders,
   });
 }
-class CustomerSentiment {
-  final int posCount; 
-  final int neuCount; 
-  final int negCount; 
 
-  
+class CustomerSentiment {
+  final int posCount;
+  final int neuCount;
+  final int negCount;
+
+
   int get totalReviews => posCount + neuCount + negCount;
 
   // Calcul automatique des pourcentages (0.0 à 1.0)

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../providers/providers.dart';
 import '../../utils/color.dart';
+import '../../utils/text_style.dart';
 
 class WorkflowPerformanceCard extends StatelessWidget {
   const WorkflowPerformanceCard({super.key});
@@ -55,51 +56,78 @@ class WorkflowPerformanceCard extends StatelessWidget {
           child: Icon(
             Icons.moving,
             color: AppColors.chartOrange,
-            size: w * 0.05,
+            size: w * 0.07,
           ),
         ),
-        SizedBox(width: w * 0.02),
+        SizedBox(width: w * 0.03),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Workflow Performance',
-                style: TextStyle(
-                  fontSize: w * 0.04,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTextStyles.cardTitle,
               ),
               SizedBox(height: w * 0.006),
               Text(
                 'Performance of your active automations',
-                style: TextStyle(
-                  fontSize: w * 0.03,
-                ),
+                style: AppTextStyles.cardSubtitle,
               ),
             ],
           ),
         ),
-        Container(
-          padding: EdgeInsets.symmetric(
-            vertical: w * 0.015,
-            horizontal: w * 0.011,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: AppColors.border,
-              width: 1.5,
-            ),
-          ),
-          child: Icon(
-            Icons.more_vert,
-            size: w * 0.045,
-          ),
-        ),
+        _buildHeaderIcon(context, Icons.more_vert, "Workflow Performance"),
       ],
     );
   }
+
+  // J'ai extrait cette fonction de dashboard.dart
+  void _showToast(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).clearSnackBars(); // Enlève le message précédent s'il y en a un
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white, fontSize: 14),
+      ),
+        backgroundColor: Colors.black87,
+        behavior: SnackBarBehavior.floating, // Rend la snackbar flottante (arrondie)
+        width: 200, // Largeur réduite pour l'effet "petit toast"
+        duration: const Duration(seconds: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+    );
+  }
+
+  // J'ai extrait cette fonction de dashboard.dart
+  Widget _buildHeaderIcon(BuildContext context, IconData icon, String label) {
+    return InkWell(
+      onTap: () {
+        _showToast(context, label); // Appelle le toast ici
+      },
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black.withValues(alpha: 0.05)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.08),
+              blurRadius: 2,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Icon(icon, color: Colors.black, size: 18.5),
+      ),
+    );
+  }
+
 
   Widget _buildStats(Map<String, dynamic> data, double w) {
     return ConstrainedBox(

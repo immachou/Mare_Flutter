@@ -1,16 +1,29 @@
-# tp_flutter
+# Mare (tp_flutter)
+Ce projet est un projet de groupe donné par le prof de flutter.
 
-Gestion de son business
+## Description du projet
+Mare est une application de tableau de bord (Dashboard) développée avec Flutter Mobile. 
+L'application propose une interface moderne et dynamique permettant d'avoir quelques widgets qui permettent de suivre les performances d'une entreprise.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies utilisées
+- Framework: Flutter
+- Langage: Dart
+- Gestion d'état: Provider
+- Animations: Flutter Animate
+- Icônes: Material Design Icons
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Participants
+- [HE11032005](https://github.com/HE11032006)
+- [Maelys008](https://github.com/Maelys008)
+- [Fayad241](https://github.com/Fayad241)
+- [OSSENI20](https://github.com/OSSENI20)
+- [Immachou](https://github.com/immachou)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Installation
+1. Cloner le dépôt distant en faisant `git clone https://github.com/HE11032006/Mare_Flutter.git`
+2. Exécuter la commande `flutter pub get` pour installer les dépendances.
+3. Lancer l'application avec `flutter run` sur un appareil connecté ou un émulateur.
+

@@ -40,7 +40,7 @@ class _EfficiencySlideCardState extends State<EfficiencySlideCard> {
               },
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
@@ -48,13 +48,14 @@ class _EfficiencySlideCardState extends State<EfficiencySlideCard> {
               (index) => _buildPageIndicator(index),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
         ],
       ),
     );
   }
 
   Widget _buildSlideCard(Map<String, dynamic> data) {
+    clipBehavior: Clip.antiAlias;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -73,18 +74,17 @@ class _EfficiencySlideCardState extends State<EfficiencySlideCard> {
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color.fromARGB(255, 130, 128, 128).withOpacity(0.4),
-          width: 2,
+          color: const Color.fromARGB(255, 130, 128, 128).withValues(alpha: 0.4),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
         ],
       ),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,23 +117,41 @@ class _EfficiencySlideCardState extends State<EfficiencySlideCard> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Row(
+          Column(
             children: [
-              Icon(
-                Icons.arrow_upward,
-                color: Colors.white.withOpacity(0.9),
-                size: 16,
+              LayoutBuilder(builder: (context, constraint) {
+                return Transform.translate(
+                  offset: const Offset(0, 0),
+                  child: SizedBox(
+                    width: constraint.maxWidth + 40,
+                    child: const Divider(
+                      color: Colors.white38,
+                      thickness: 0.8,
+                      height: 20,
+                    ),
+                  ),
+                );
+              }),
+              Row(
+                children: [
+                  Icon(
+                    Icons.arrow_upward,
+                    color: Colors.white.withValues(alpha: 0.9),
+                    size: 14,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${data['growth']}% ${data['period']}',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.85),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 4),
-              Text(
-                '${data['growth']}% ${data['period']}',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.85),
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
+            ]
+          )
+
         ],
       ),
     );

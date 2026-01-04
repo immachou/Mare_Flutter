@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../models/dashboardModels.dart';
 import '../utils/color.dart';
 import '../utils/text_style.dart';
 import '../widget/cards/activity_seeds.dart';
 import '../widget/cards/customer_sentiment_card.dart';
+import '../widget/cards/business_traffic.dart';
 import '../widget/cards/efficiency_slide_card.dart';
 import '../widget/cards/workflow_performance_card.dart';
 import '../widget/cards/conversion_funnel_card.dart'; 
@@ -14,24 +14,37 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<ActivityItem> activi = [
-      const ActivityItem(
+      ActivityItem(
         type: ActivityType.userAction,
-        title: "Nouvelle vente de",
-        highlight: "Jordan 4 Retro",
-        timeAgo: "Il y a 2 min",
+        title: "AI generated a performance report for",
+        highlight: "Sales Overview",
+        timeAgo: "2m ago",
+        icon: Icons.auto_awesome,
       ),
       const ActivityItem(
-        type: ActivityType.alert,
-        title: "Stock faible sur",
-        highlight: "Yeezy Boost 350",
-        timeAgo: "Il y a 15 min",
+        type: ActivityType.update,
+        title: "Mike Rowen",
+        highlight: "changed the executor time in Sales",
+        timeAgo: "10m ago",
+        imagePath: "image/mike.png",
+
+      ),
+      const ActivityItem(
+        type: ActivityType.workflow,
+        title: "Workflow Invoice Sync",
+        highlight: "completed successfully",
+        timeAgo: "17m ago",
+        icon: Icons.check_circle,
       ),
       const ActivityItem(
         type: ActivityType.aiGenerated,
-        title: "Optimisation IA suggérée",
-        timeAgo: "Il y a 1h",
+        title: "AI flagged an anomaly in",
+        highlight: "Monthly Revenue Trend",
+        timeAgo: "17m ago",
+        icon: Icons.signal_cellular_alt
       ),
     ];
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -96,7 +109,6 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-
   Widget _buildHeaderSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
@@ -125,7 +137,7 @@ class DashboardScreen extends StatelessWidget {
   }
 
   void _showToast(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).clearSnackBars(); // Enlève le message précédent s'il y en a un
+    ScaffoldMessenger.of(context).clearSnackBars();
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(
@@ -134,15 +146,11 @@ class DashboardScreen extends StatelessWidget {
         style: const TextStyle(color: Colors.white, fontSize: 14),
       ),
         backgroundColor: Colors.black87,
-        behavior: SnackBarBehavior.floating, // Rend la snackbar flottante (arrondie)
+        behavior: SnackBarBehavior.floating,
         width: 200, // Largeur réduite pour l'effet "petit toast"
         duration: const Duration(seconds: 2),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-        ),
-        animation: CurvedAnimation(
-          parent: AnimationController(vsync: ScaffoldMessenger.of(context)), // Géré automatiquement par Flutter
-          curve: Curves.easeOutBack, // Transition rapide et un peu élastique
         ),
       ),
     );
@@ -182,9 +190,7 @@ class DashboardScreen extends StatelessWidget {
   }
 
   Widget _businessTrafficCard() {
-    return Center(
-      child: Text("La partie business traffic card"),
-    );
+    return const BusinessTrafficCard();
   }
 
   Widget _conventionfunnelcard() {
@@ -196,8 +202,6 @@ class DashboardScreen extends StatelessWidget {
   et on l'a juste appelé plus haut dans le widgetbuild de la manière suivante:
   const CustomerSentimentCard()
  */
-  
-
 
   Widget _activitySeed(String emoji, String name, String comment, int stars) {
     return Container(

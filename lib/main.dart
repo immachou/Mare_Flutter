@@ -16,7 +16,6 @@ class MareApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AJOUTEZ LE MULTIPROVIDER ICI
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DashboardProvider()),

@@ -24,8 +24,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      //border: Border.fromBorderSide(BorderSide(color: AppColors.border)),
       backgroundColor: Colors.white,
       elevation: 0,
+      shape: Border(bottom: BorderSide(color: AppColors.borderLight)),
       automaticallyImplyLeading: false,
       centerTitle: false,
       title: Row(
@@ -42,10 +44,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 borderRadius: BorderRadius.circular(8),
                 // appliquer la bordure en bas
-                border: Border.all(
-                  color: AppColors.border,
-                  width: 2,
-                ),
               ),
               child: const Center(
                 child: Text(

@@ -22,38 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  /*@override
-  Widget build(BuildContext context) {
-    return Consumer<DashboardProvider>(
-      builder: (context, provider, _) {
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          appBar: const CustomAppBar(showLogo: true),
-          endDrawer: const AppDrawer(),
-          body: IndexedStack(
-            index: provider.currentNavIndex,
-            children: const [
-
-            ],
-          )
-              .animate()
-              .fadeIn(duration: const Duration(milliseconds: 300))
-              .slideY(begin: 0.02, end: 0),
-          bottomNavigationBar: CustomBottomNav(
-            currentIndex: provider.currentNavIndex,
-            onTap: provider.setNavIndex,
-          ),
-        );
-      },
-    );
-
-
-
-  }
-
-   */
   @override
   Widget build(BuildContext context) {
+
     // On récupère le provider ici ou via un Consumer plus bas
     final provider = context.watch<DashboardProvider>();
 
@@ -64,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: provider.currentNavIndex,
         children: const [
-          // Vos pages ici
+          // Vos pages ici, pour l'instant dashboardscreen seul puisque c'est ça le prof a demandé
           DashboardScreen(),
           Center(child: Text("Page 2")),
           Center(child: Text("Page 3")),

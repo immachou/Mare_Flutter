@@ -18,6 +18,7 @@ class CustomBottomNav extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.surface,
+        border: Border.fromBorderSide(BorderSide(color: AppColors.border)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -33,11 +34,11 @@ class CustomBottomNav extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(0, Icons.dashboard_outlined, Icons.dashboard),
-              _buildNavItem(1, Icons.route_outlined, Icons.route),
-              _buildNavItem(2, Icons.calendar_today_outlined, Icons.calendar_today),
-              _buildNavItem(3, Icons.chat_bubble_outline_rounded, Icons.chat_bubble_rounded),
-              _buildNavItem(4, Icons.settings_outlined, Icons.settings),
+              _buildNavItem(0, Icons.view_quilt_outlined, Icons.view_quilt),
+              _buildNavItem(1, Icons.account_tree_outlined, Icons.account_tree),
+              _buildNavItem(2, Icons.calendar_month_outlined, Icons.calendar_month),
+              _buildNavItem(3, Icons.chat_outlined, Icons.chat_bubble),
+              _buildNavItem(4, Icons.account_circle_outlined, Icons.account_circle),
             ],
           ),
         ),
@@ -53,7 +54,7 @@ class CustomBottomNav extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Icon(
           isSelected ? filledIcon : outlinedIcon,
           color: isSelected ? AppColors.primary : AppColors.navInactive,
